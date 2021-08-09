@@ -1,0 +1,236 @@
+攻撃力守備力速さ体力
+自分の基準を決めたときに，どのモンスターが選ばれるか
+攻撃力守備力身長体重速さ
+桜木花道188 83
+流川楓187 75
+赤木剛憲197 93
+三井寿宮城リョータ魚住純仙道彰福田吉兆牧紳一高砂一馬神宗一郎清田信長藤真健司花形透長谷川一志
+深津一成河田雅史一ノ倉聡沢北栄治野辺将広松本稔河田美紀男
+諸星大土屋淳森重寛
+ジャンルを選んでその後クイズが何題かランダムに出てくる
+std::shuffle( vec.begin(), vec.end(), get_rand_mt );
+
+問題をファイルにいれて、読み込み
+vectorのvector？
+クラスでジャンルを設定、どのvectorか決定、出題順序iをシャッフル
+
+
+#include<complex>
+#include<iostream>
+#include<fstream>
+#include<string>
+
+int main() {
+	std::ofstream outfile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testF.text");
+	outfile << "10\n";
+	outfile << "リンゴは英語で何と言う？\n";
+	outfile << "1:apple\n";
+	outfile << "2:orange\n";
+	outfile << "3:banana\n";
+	outfile << "1\n";
+	outfile << "正解は1:apple\n";
+
+	outfile << "50\n";
+	outfile << "世界三大珍味はどれ？\n";
+	outfile << "1:イカスミ\n";
+	outfile << "2:キャビア\n";
+	outfile << "3:チーズ\n";
+	outfile << "2\n";
+	outfile << "正解は2:キャビア\n";
+
+	outfile << "20\n";
+	outfile << "大正->昭和->○○->令和では○○に入る年号は？\n";
+	outfile << "1:慶応\n";
+	outfile << "2:明治\n";
+	outfile << "3:平成\n";
+	outfile << "3\n";
+	outfile << "正解は3:平成\n";
+
+}
+
+#include<complex>
+#include<iostream>
+#include<fstream>
+#include<string>
+
+int main() {
+	std::ofstream outfile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testG.text");
+	
+	outfile << "20\n";
+	outfile << "犬は英語で何と言う？\n";
+	outfile << "1:dog\n";
+	outfile << "2:orange\n";
+	outfile << "3:banana\n";
+	outfile << "1\n";
+	outfile << "正解は1:dog\n";
+
+
+	outfile << "20\n";
+	outfile << "大正->昭和->○○->令和では○○に入る年号は？\n";
+	outfile << "1:慶応\n";
+	outfile << "2:明治\n";
+	outfile << "3:平成\n";
+	outfile << "3\n";
+	outfile << "正解は3:平成\n";
+
+	outfile << "20\n";
+	outfile << "世界三大珍味はどれ？\n";
+	outfile << "1:イカスミ\n";
+	outfile << "2:キャビア\n";
+	outfile << "3:チーズ\n";
+	outfile << "2\n";
+	outfile << "正解は2:キャビア\n";
+}
+
+
+#include<complex>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+
+class Quiz {
+protected:
+	std::string Question;
+	std::string Choice1;
+	std::string Choice2;
+	std::string Choice3;
+	int ans{};
+public:
+	void setQuestion(const std::string& newQuestion) { Question = newQuestion; }
+	std::string getQuestion() { return Question; }
+	void setChoice1(const std::string& newChoice1) { Choice1 = newChoice1; }
+	std::string getChoice1() { return Choice1; }
+	void setChoice2(const std::string& newChoice2) { Choice2 = newChoice2; }
+	std::string getChoice2() { return Choice2; }
+	void setChoice3(const std::string& newChoice3) { Choice3 = newChoice3; }
+	std::string getChoice3() { return Choice3; }
+	void setAns(int newAns) { ans = newAns; }
+	int getAns() { return ans; };
+};
+
+int main() {
+
+	std::vector<Quiz> vec;
+	std::ifstream infile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testF.text");
+	std::string QUESTION;
+	std::string CHOICE1, CHOICE2, CHOICE3;
+	int ANS;
+	int answer;
+	int i = 0;
+	while (infile >> QUESTION >> CHOICE1 >> CHOICE2 >> CHOICE3 >> ANS) {
+		vec.emplace_back();
+		vec[i].setQuestion(QUESTION);
+		vec[i].setChoice1(CHOICE1);
+		vec[i].setChoice2(CHOICE2);
+		vec[i].setChoice3(CHOICE3);
+		vec[i].setAns(ANS);
+		std::cout << vec[i].getQuestion() << "\n"
+			<< vec[i].getChoice1() << " " << vec[i].getChoice2() << " " << vec[i].getChoice3() << "\n"
+			<< " >>>";
+		std::cin >> answer;
+		if (answer == vec[i].getAns()) {
+			std::cout << "正解！\n\n";
+		}
+		else {
+			std::cout << "不正解...\n";
+		}
+		std::cout << std::endl;
+		i++;
+	}
+	infile.close();
+}
+
+
+
+
+
+#include<complex>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+
+class Zatsugaku {
+protected:
+	std::string Question;
+	std::string Choice1;
+	std::string Choice2;
+	std::string Choice3;
+	int ans{};
+public:
+	void setQuestion(const std::string& newQuestion) { Question = newQuestion; }
+	std::string getQuestion() { return Question; }
+	void setChoice1(const std::string& newChoice1) { Choice1 = newChoice1; }
+	std::string getChoice1() { return Choice1; }
+	void setChoice2(const std::string& newChoice2) { Choice2 = newChoice2; }
+	std::string getChoice2() { return Choice2; }
+	void setChoice3(const std::string& newChoice3) { Choice3 = newChoice3; }
+	std::string getChoice3() { return Choice3; }
+	void setAns(int newAns) { ans = newAns; }
+	int getAns() { return ans; };
+};
+class Sports {
+protected:
+	std::string Question;
+	std::string Choice1;
+	std::string Choice2;
+	std::string Choice3;
+	int ans{};
+public:
+	void setQuestion(const std::string& newQuestion) { Question = newQuestion; }
+	std::string getQuestion() { return Question; }
+	void setChoice1(const std::string& newChoice1) { Choice1 = newChoice1; }
+	std::string getChoice1() { return Choice1; }
+	void setChoice2(const std::string& newChoice2) { Choice2 = newChoice2; }
+	std::string getChoice2() { return Choice2; }
+	void setChoice3(const std::string& newChoice3) { Choice3 = newChoice3; }
+	std::string getChoice3() { return Choice3; }
+	void setAns(int newAns) { ans = newAns; }
+	int getAns() { return ans; };
+};
+
+int main() {
+	std::cout << "ジャンルを選択してください\n" << "1 雑学　2 スポーツ\n";
+	int jnl;
+	std::cin >> jnl;
+	std::vector<Zatsugaku> vec;
+	std::vector<Sports> vec;
+	std::ifstream infile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testF.text");
+	std::ifstream infile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testG.text");
+	
+	if (jnl == 1 ) {
+		std::vector<Zatsugaku> vec;
+		std::ifstream infile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testF.text");
+	}
+	else {
+		std::vector<Sports> vec;
+		std::ifstream infile("C:/Users/naoto kusuda/Documents/三年前期/プログラミング/testG.text");
+	}
+	std::string QUESTION;
+	std::string CHOICE1, CHOICE2, CHOICE3;
+	int ANS;
+	int answer;
+	int i = 0;
+	while (infile >> QUESTION >> CHOICE1 >> CHOICE2 >> CHOICE3 >> ANS) {
+		vec.emplace_back();
+		vec[i].setQuestion(QUESTION);
+		vec[i].setChoice1(CHOICE1);
+		vec[i].setChoice2(CHOICE2);
+		vec[i].setChoice3(CHOICE3);
+		vec[i].setAns(ANS);
+		std::cout << vec[i].getQuestion() << "\n"
+			<< vec[i].getChoice1() << " " << vec[i].getChoice2() << " " << vec[i].getChoice3() << "\n"
+			<< " >>>";
+		std::cin >> answer;
+		if (answer == vec[i].getAns()) {
+			std::cout << "正解！\n\n";
+		}
+		else {
+			std::cout << "不正解...\n";
+		}
+		std::cout << std::endl;
+		i++;
+	}
+	infile.close();
+}
